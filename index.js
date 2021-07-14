@@ -26,6 +26,12 @@ bot.on('message', (message) =>{
             bot.commands.get('role').execute(bot,message,Discord)
             console.log(cmd)
         }
+	
+	if(cmd === "rmr")
+        {
+            bot.commands.get('rmr').execute(bot,message,Discord)
+            console.log(cmd)
+        }
         
         if(cmd === "crole")
         {
