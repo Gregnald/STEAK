@@ -36,7 +36,7 @@ bot.on('message', (message) =>{
         words = message.content.split(' ')
         cmd = words[0].slice(1)
         
-        if(cmd === "set pref")
+        if(message.content.startsWith("set pref"))
         {
             bot.commands.get('prefix').execute(bot,message,Discord,config,guildId,prefix)
             console.log(cmd)
