@@ -25,7 +25,7 @@ bot.on('message', (message) =>{
     let guildId = message.guild.id
     console.log("Message from, Guild Id : "+guildId)
     if(!config["guildIds"].includes(guildId)) bot.commands.get('New Guild Setup').execute(fs,bot,Discord,config,guildId)
-    
+    console.log("New guild Made Id : "+guildId)
     let ind = config["guildIds"].indexOf(guildId)
     prefix = config["prefix"][ind]
 
