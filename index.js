@@ -35,10 +35,6 @@ bot.on('message', (message) =>{
         if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`You Don't Have Admin Permissions...!!`)
         words = message.content.split(' ')
         cmd = words[0].slice(1)
-        
-        let data = JSON.stringify(config);
-        //Save the file
-        fs.writeFileSync('database.json', data);
 
         if(cmd === "role")
         {
