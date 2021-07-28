@@ -36,7 +36,7 @@ bot.on('message', (message) =>{
         words = message.content.split(' ')
         cmd = words[0].slice(1)
         
-        let data = JSON.stringify(json);
+        let data = JSON.stringify(config);
         //Save the file
         fs.writeFileSync('database.json', data);
 
