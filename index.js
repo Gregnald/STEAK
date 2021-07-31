@@ -6,9 +6,9 @@ bot.commands = new Discord.Collection();
 
 let rawdata = fs.readFileSync('database.json');
 let config = JSON.parse(rawdata);
-let Setup = require('./New Guild Setup')
 
-const filesrc = require('./filesrc')
+const filesrc = require('./filesrc');
+const console = require('console');
 filesrc.execute(bot)
 
 bot.on('ready',async () => {
@@ -22,25 +22,25 @@ bot.on('ready',async () => {
     if(!config["guildIds"].includes(guildId))setup.execute(fs,bot,Discord,config,guildId)
 });
 
-bot.on('message', (message) =>{
+    bot.on('message', (message) =>{
     let guildId = message.guild.id
     console.log("Message from, Guild Id : "+guildId)
     if(!config["guildIds"].includes(guildId))setup.execute(fs,bot,Discord,config,guildId)
     let ind = config["guildIds"].indexOf(guildId)
     prefix = config["prefix"][ind]
 
-    if(message.content.startsWith(prefix))
+    if(message.content.startsWith("set pref"))
+    {
+        bot.commands.get('prefix').execute(bot,message,Discord,config,guildId,fs)
+        console.log("prefix change")
+    }
+    
+    else if(message.content.startsWith(prefix))
     {
         if(message.author.bot)return;
         if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`You Don't Have Admin Permissions...!!`)
         words = message.content.split(' ')
-        cmd = words[0].slice(1)
-        
-        if(message.content.startsWith("set pref"))
-        {
-            bot.commands.get('prefix').execute(bot,message,Discord,config,guildId,prefix)
-            console.log(cmd)
-        }
+        cmd = words[0].slice(prefix.length)
 
         if(cmd === "role")
         {

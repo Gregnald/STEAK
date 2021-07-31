@@ -5,7 +5,7 @@ module.exports =
     async execute(bot,message,Discord)
     {
         const  { guild } = message
-        channel = bot.channels.cache.find(channel => channel.name === 'clear-log')
+        channel = guild.channels.cache.find(channel => channel.name === 'clear-log')
         if(!channel)guild.channels.create('clear-log', { reason: 'Zrurat thi' })
         sentc = message.channel.name
         cm = message.author.id
@@ -17,7 +17,7 @@ module.exports =
         await message.channel.messages.fetch({limit : num}).then(messages =>{
             message.channel.bulkDelete(messages);
         });
-        channel = bot.channels.cache.find(channel => channel.name === 'clear-log')
+        channel = guild.channels.cache.find(channel => channel.name === 'clear-log')
         channel.send(`\`Deleted last ${num-1} messages\` of ${sentc}\nCommand sent by <@${cm}>`);
     }
 }
