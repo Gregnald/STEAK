@@ -16,16 +16,16 @@ bot.on('ready',async () => {
  });
 
  bot.on("guildCreate", (guild) => {
-    let guildId = guild.id
     // This event triggers when the bot joins a guild.    
     console.log(`Joined new guild: ${guild.name}`);
-    if(!config["guildIds"].includes(guildId))setup.execute(fs,bot,Discord,config,guildId)
 });
 
     bot.on('message', (message) =>{
     let guildId = message.guild.id
-    console.log("Message from, Guild Id : "+guildId)
-    if(!config["guildIds"].includes(guildId))setup.execute(fs,bot,Discord,config,guildId)
+    if(!config["guildIds"].includes(guildId))
+    {
+        setup.execute(fs,bot,Discord,config,guildId)
+    }
     let ind = config["guildIds"].indexOf(guildId)
     prefix = config["prefix"][ind]
 
@@ -35,7 +35,7 @@ bot.on('ready',async () => {
         console.log("prefix change")
     }
     
-    else if(message.content.startsWith(prefix))
+    else if(message.content.startsWith(prefix) || message.content.startsWith("#"))
     {
         if(message.author.bot)return;
         if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`You Don't Have Admin Permissions...!!`)
@@ -69,6 +69,12 @@ bot.on('ready',async () => {
         if(cmd === "clear")
         {
         bot.commands.get('clear').execute(bot,message,Discord)
+        console.log(cmd)
+        }
+
+        if(cmd === "help")
+        {
+        bot.commands.get('Help').execute(bot,message,Discord)
         console.log(cmd)
         }
     }
