@@ -6,6 +6,7 @@ module.exports =
     {
         config["guildIds"].push(guildId)
         config["prefix"].push("#")
+        config["clog"].push("e")
         let data = JSON.stringify(config);
         fs.writeFileSync('database.json', data);
         console.log("New guild Made Id : "+guildId)

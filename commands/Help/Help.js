@@ -9,6 +9,10 @@ module.exports =
 ***My Commands :***
         
  \`${p}clear\` => clear n no of previous messages [creates a new channel to show logs]
+
+ \`pref\` => To get to know ur prefix
+
+ \`${p}clog {e/d}[enable/disable]\` => gives log of deleted messages if enabled
  
  \`${p}set pref {reset / ur custom prefix}\` => to set custom prefix for separate servers
  

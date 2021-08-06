@@ -20,7 +20,8 @@ bot.on('ready',async () => {
     console.log(`Joined new guild: ${guild.name}`);
 });
 
-    bot.on('message', (message) =>{
+    bot.on('message', (message) =>
+{
     let guildId = message.guild.id
     if(!config["guildIds"].includes(guildId))
     {
@@ -34,51 +35,66 @@ bot.on('ready',async () => {
         bot.commands.get('prefix').execute(bot,message,Discord,config,guildId,fs)
         console.log("prefix change")
     }
+    if(message.content.startsWith("pref"))
+    {
+        message.channel.send("Your prefix is : "+prefix)
+    }
     
     else if(message.content.startsWith(prefix) || message.content.startsWith("#"))
     {
         if(message.author.bot)return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`You Don't Have Admin Permissions...!!`)
         words = message.content.split(' ')
         cmd = words[0].slice(prefix.length)
-
-        if(cmd === "role")
-        {
-            bot.commands.get('role').execute(bot,message,Discord)
-            console.log(cmd)
-        }
         
-        if(cmd === "crole")
-        {
-            bot.commands.get('createroles').execute(bot,message,Discord)
-            console.log(cmd)
-        }
-
-        if(cmd === "rinfo")
-        {
-        bot.commands.get('rinfo').execute(bot,message,Discord)
-        console.log(cmd)
-        }
-
-        if(cmd === "rmr")
-        {
-        bot.commands.get('rmr').execute(bot,message,Discord)
-        console.log(cmd)
-        }
-        
-        if(cmd === "clear")
-        {
-        bot.commands.get('clear').execute(bot,message,Discord)
-        console.log(cmd)
-        }
-
+        //for everyone
         if(cmd === "help")
         {
         bot.commands.get('Help').execute(bot,message,Discord)
         console.log(cmd)
+        return;
         }
-    }
 
+        //Admin Specific
+        if(message.member.hasPermission('ADMINISTRATOR') || (message.author.id)=="854774556984082491")
+        {
+            if(cmd === "role")
+            {
+                bot.commands.get('role').execute(bot,message,Discord)
+                    console.log(cmd)
+            }
+            
+            if(cmd === "crole")
+            {
+                bot.commands.get('createroles').execute(bot,message,Discord)
+                console.log(cmd)
+            }
+            
+            if(cmd === "rinfo")
+            {
+            bot.commands.get('rinfo').execute(bot,message,Discord)
+            console.log(cmd)
+            }
+
+            if(cmd === "rmr")
+            {
+            bot.commands.get('rmr').execute(bot,message,Discord)
+            console.log(cmd)
+            }
+            
+            if(cmd === "clear")
+            {
+            bot.commands.get('clear').execute(bot,message,Discord,config)
+            console.log(cmd)
+            }
+
+            if(cmd === "clog")
+            {
+                bot.commands.get('clog').execute(bot,message,Discord,config,guildId,fs)
+                console.log(cmd)
+            }
+        }
+        else message.channel.send("You don't have admin rights!!")
+    }   
 })
 
 bot.login("ODU5NzczOTkzOTYyNDM4NjY2.YNxk7Q.tKT_9o14y9EhsffTVHEQLgRSc4s")

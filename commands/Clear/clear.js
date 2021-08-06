@@ -2,7 +2,7 @@ module.exports =
 {
     name : 'clear',
     description : 'This will delete n no. of recent messages',
-    async execute(bot,message,Discord)
+    async execute(bot,message,Discord,config)
     {
         const  { guild } = message
         channel = guild.channels.cache.find(channel => channel.name === 'clear-log')
@@ -18,6 +18,10 @@ module.exports =
             message.channel.bulkDelete(messages);
         });
         channel = guild.channels.cache.find(channel => channel.name === 'clear-log')
-        channel.send(`\`Deleted last ${num-1} messages\` of ${sentc}\nCommand sent by <@${cm}>`);
+
+        let guildId = message.guild.id
+        let ind = config["guildIds"].indexOf(guildId)
+        log_perm = config["clog"][ind]
+        if(log_perm!="d")channel.send(`\`Deleted last ${num-1} messages\` of ${sentc}\nCommand sent by <@${cm}>`);
     }
 }
