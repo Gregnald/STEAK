@@ -97,4 +97,4 @@ bot.on('ready',async () => {
     }   
 })
 
-bot.login("ODU5NzczOTkzOTYyNDM4NjY2.YNxk7Q.tKT_9o14y9EhsffTVHEQLgRSc4s")
+bot.login("ODU5NzczOTkzOTYyNDM4NjY2.YNxk7Q.VDHIfRJE0gRCBd3MJqUPx3HAA18")
