@@ -26,6 +26,6 @@ module.exports =
  
  \`${p}help\` => to repeat this bullshit..
         
-**Note :** *Commands are to be used the way they are written`)
+**Note :** *Commands are to be used the way they are written*`)
     }
 }
